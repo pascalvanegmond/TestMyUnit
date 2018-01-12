@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestMyUnit
 {
-    public interface ILogMessage
+    public interface ILogger
     {
         void Write(string message);
     }

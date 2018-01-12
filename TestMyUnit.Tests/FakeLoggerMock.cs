@@ -1,6 +1,6 @@
 ﻿namespace TestMyUnit.Tests
 {
-    internal class FakeLogger:ILogMessage
+    internal class FakeLoggerMock:ILogger
     {
         public string Text;
 

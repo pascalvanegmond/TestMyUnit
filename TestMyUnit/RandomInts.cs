@@ -11,7 +11,12 @@ namespace TestMyUnit
     {
         public List<int> ListOfRandomInts = new List<int>(); 
         public Random rnd = new Random();
+        private ILogger log;
 
+        public RandomInts(ILogger logger)
+        {
+            log = logger;
+        }
 
         public int CreatRandomInt()
         {
@@ -52,8 +57,10 @@ namespace TestMyUnit
                 //Console.WriteLine(i);
                 FindRandomUniqueInt();
             }
+            log.Write("Loggin now");
             WriteListToFile();
             PrintListToString();
+
         }
 
         public void WriteListToFile()

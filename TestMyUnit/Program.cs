@@ -13,7 +13,7 @@ namespace TestMyUnit
         static void Main(string[] args)
         {
 
-            RandomInts randomInt = new RandomInts();
+            RandomInts randomInt = new RandomInts(new LoggerMock());
             randomInt.MakeListNDigitsLong(100);
 
             Console.Read();

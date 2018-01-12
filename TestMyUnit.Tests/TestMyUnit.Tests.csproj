@@ -52,7 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeLogger.cs" />
+    <Compile Include="FakeLoggerMock.cs" />
     <Compile Include="RandomIntTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

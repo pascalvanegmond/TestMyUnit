@@ -11,7 +11,7 @@ namespace TestMyUnit.Tests
         [Test]
         public void RandomInts_CreateRandomIntCantBeNegative_ReturnsTrue()
         {
-            RandomInts random = new RandomInts();
+            RandomInts random = new RandomInts(new LoggerMock());
 
             var result = random.CreatRandomInt();
 
@@ -21,7 +21,7 @@ namespace TestMyUnit.Tests
         [Test]
         public void RandomInts_CreateRandomIntIsLowerThan99999_ReturnsTrue()
         {
-            RandomInts random = new RandomInts();
+            RandomInts random = new RandomInts(new LoggerMock());
 
             var result = random.CreatRandomInt();
 
@@ -33,7 +33,7 @@ namespace TestMyUnit.Tests
         {
             List<int> list = new List<int> { 1, 2, 3, 4, 5 };
             var alreadyUsedInt = 6;
-            RandomInts random = new RandomInts();
+            RandomInts random = new RandomInts(new LoggerMock());
 
             var result = random.CheckIfIntIsUnique(alreadyUsedInt, list);
 
@@ -45,7 +45,7 @@ namespace TestMyUnit.Tests
         {
             List<int> list = new List<int> { 1, 2, 3, 4, 5 };
             var alreadyUsedInt = 5;
-            RandomInts random = new RandomInts();
+            RandomInts random = new RandomInts(new LoggerMock());
 
             var result = random.CheckIfIntIsUnique(alreadyUsedInt, list);
 
@@ -56,7 +56,7 @@ namespace TestMyUnit.Tests
         public void RandomInts_CheckIfIsNUniqueDigitsLong_ReturnsTrue()
         {
             int n = 100;
-            RandomInts random = new RandomInts();
+            RandomInts random = new RandomInts(new LoggerMock());
             random.MakeListNDigitsLong(n);
 
             var result = random.ListOfRandomInts.Distinct().Count();
@@ -64,17 +64,15 @@ namespace TestMyUnit.Tests
             Assert.AreEqual(result, n);
         }
 
-
         [Test]
-        public void RandomInts_CheckMockLogs_ReturnsTrue()
+        public void RandomInts_CheckLogWhenCalled_ReturnsTrue()
         {
-            // https://www.youtube.com/watch?v=fAb_OnooCsQ
-            var mockLog = new FakeLogger
-            {
-                Text = "hi"
-            };
+            var mockLog = new FakeLoggerMock();
 
-            Assert.AreEqual("hi", mockLog.Text);
+            var randomInts = new RandomInts(mockLog);
+            randomInts.MakeListNDigitsLong(100);
+
+            Assert.AreEqual("Loggin now", mockLog.Text);
         }
     }
 }
