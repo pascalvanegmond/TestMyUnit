@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestMyUnit
 {
@@ -18,7 +15,7 @@ namespace TestMyUnit
             log = logger;
         }
 
-        public int CreatRandomInt()
+        public int CreateRandomInt()
         {
             // maak een random int tussen de 0 en 99999
             var newInt = rnd.Next(0, 99999);
@@ -38,7 +35,7 @@ namespace TestMyUnit
         public void FindRandomUniqueInt()
         {
             // als de int nog niet bestaat ga verder anders, zoek verder voor een unieke int
-            var newInt = CreatRandomInt();
+            var newInt = CreateRandomInt();
             if (CheckIfIntIsUnique(newInt, ListOfRandomInts))
             {
                 ListOfRandomInts.Add(newInt);
@@ -54,7 +51,6 @@ namespace TestMyUnit
             // loop over N om een lijst te maken met N getallen lang.
             for (int i = 0; i < n; i++)
             {
-                //Console.WriteLine(i);
                 FindRandomUniqueInt();
             }
             log.Write("Loggin now");
