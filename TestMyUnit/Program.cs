@@ -13,8 +13,8 @@ namespace TestMyUnit
         static void Main(string[] args)
         {
 
-            RandomInt randomInt = new RandomInt();
-            randomInt.MakeListNDigitsLong();
+            RandomInts randomInt = new RandomInts();
+            randomInt.MakeListNDigitsLong(100);
 
             Console.Read();
         }

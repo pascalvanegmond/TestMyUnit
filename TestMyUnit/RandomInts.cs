@@ -7,35 +7,21 @@ using System.Threading.Tasks;
 
 namespace TestMyUnit
 {
-    class RandomInt
+    class RandomInts
     {
-        public List<int> ListOfRandomNummers = new List<int>(); 
-        public int AmountOfNumbersInList = 100;
-        public int NewInt;
-        Random rnd = new Random();
+        public List<int> ListOfRandomInts = new List<int>(); 
+        public Random rnd = new Random();
 
-        public void FindRandomUniqueInt()
-        {
-            // als de int nog niet bestaat ga verder anders, zoek verder voor een unieke int
-            CreatRandomInt();
-            if (CheckIfIntIsUnique(NewInt))
-            {
-                AddUniqueRandomIntToList();
-            }
-            else
-            {
-                FindRandomUniqueInt();
-            }
-        }
 
-        public void CreatRandomInt()
+        public int CreatRandomInt()
         {
             // maak een random int tussen de 0 en 99999
-            NewInt = rnd.Next(0, 99999);
-           
+            var newInt = rnd.Next(0, 99999);
+
+            return newInt;
         }
 
-        public bool CheckIfIntIsUnique(int newInt)
+        public bool CheckIfIntIsUnique(int newInt, List<int> ListOfRandomNummers)
         {
             // controleer de int met de lijst of die bestaat.
             if (ListOfRandomNummers.Contains(newInt))
@@ -44,16 +30,24 @@ namespace TestMyUnit
                 return true;
         }
 
-        public void AddUniqueRandomIntToList()
+        public void FindRandomUniqueInt()
         {
-            // voeg de nieuwe int toe aan de lijst.
-            ListOfRandomNummers.Add(NewInt);
+            // als de int nog niet bestaat ga verder anders, zoek verder voor een unieke int
+            var newInt = CreatRandomInt();
+            if (CheckIfIntIsUnique(newInt, ListOfRandomInts))
+            {
+                ListOfRandomInts.Add(newInt);
+            }
+            else
+            {
+                FindRandomUniqueInt();
+            }
         }
 
-        public void MakeListNDigitsLong()
+        public void MakeListNDigitsLong(int n)
         {
             // loop over N om een lijst te maken met N getallen lang.
-            for (int i = 0; i < AmountOfNumbersInList; i++)
+            for (int i = 0; i < n; i++)
             {
                 //Console.WriteLine(i);
                 FindRandomUniqueInt();
@@ -74,7 +68,7 @@ namespace TestMyUnit
         public string ListToString()
         {
             // set de lijst om naar een string 
-            string ListToString = string.Join(",", ListOfRandomNummers.ToArray());
+            string ListToString = string.Join(",", ListOfRandomInts.ToArray());
             return ListToString;
         }
 
